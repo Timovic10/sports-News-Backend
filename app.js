@@ -40,7 +40,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://sports-news-frontend.onrender.com", // your frontend domain
+    origin: process.env.CLIENT_URL_1, // your frontend domain
     credentials: true, // 👈 allow cookies
   })
 );
