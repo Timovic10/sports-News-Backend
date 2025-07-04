@@ -10,12 +10,12 @@ import cookieParser from "cookie-parser";
 import articleRouter from "./routes/articleRoute.js";
 import authRouter from "./routes/authRoute.js";
 import AppError from "./utils/appError.js";
-// import job from "./lib/cron.js";
+import job from "./lib/cron.js";
 import { globalErrorHandler } from "./controller/errorController.js";
 
 const app = express();
 
-// job.start(); // Start the cron job to fetch sports news
+job.start(); // Start the cron job to fetch sports news
 app.use(cookieParser());
 // Middlewares
 // const allowedOrigins = [
@@ -40,7 +40,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // your frontend domain
+    origin: "https://sports-news-frontend.onrender.com", // your frontend domain
     credentials: true, // 👈 allow cookies
   })
 );
