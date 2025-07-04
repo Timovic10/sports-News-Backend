@@ -5,8 +5,8 @@ import {
   getBlogBySlug,
   getTrendingAndRecentPosts,
   getArticleStats,
-} from "../sports-News-Backend/controller/blogController.js";
-import { protect } from "../sports-News-Backend/controller/authController.js";
+} from "../controller/blogController.js";
+import { protect } from "../controller/authController.js";
 import upload from "../utils/upload.js";
 import express from "express";
 
