@@ -16,6 +16,8 @@ import { globalErrorHandler } from "./controller/errorController.js";
 const app = express();
 
 job.start(); // Start the cron job to fetch sports news
+// ✅ Tell Express to trust Render's proxy
+app.set("trust proxy", 1);
 app.use(cookieParser());
 // Middlewares
 // const allowedOrigins = [
@@ -57,7 +59,7 @@ if (process.env.NODE_ENV === "development") {
 
 // Limit requests from same API
 const limiter = rateLimit({
-  max: 100,
+  max: 200,
   windowMs: 60 * 60 * 1000,
   message: "Too many requests from this IP, please try again in an hour!",
 });
