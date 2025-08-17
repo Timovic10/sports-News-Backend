@@ -77,9 +77,6 @@ export const login = catchAsync(async (req, res, next) => {
 
   // 3. If ok, sign token
   createSendToken(admin, 200, res);
-
-  // 4. Hide password before sending back
-  admin.password = undefined;
 });
 
 export const protect = catchAsync(async (req, res, next) => {

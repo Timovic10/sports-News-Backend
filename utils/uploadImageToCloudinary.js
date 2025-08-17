@@ -1,3 +1,4 @@
+// uploadImageToCloudinary
 import cloudinary from "./cloudinary.js";
 
 export const uploadImageToCloudinary = async (filePath, folder = "blog") => {
