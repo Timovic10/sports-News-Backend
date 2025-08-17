@@ -10,36 +10,16 @@ import cookieParser from "cookie-parser";
 import articleRouter from "./routes/articleRoute.js";
 import authRouter from "./routes/authRoute.js";
 import AppError from "./utils/appError.js";
+import matchRoutes from "./routes/matchRoutes.js";
 import job from "./lib/cron.js";
 import { globalErrorHandler } from "./controller/errorController.js";
 
 const app = express();
 
-job.start(); // Start the cron job to fetch sports news
-// ✅ Tell Express to trust Render's proxy
-app.set("trust proxy", 1);
+// job.start();
 app.use(cookieParser());
+
 // Middlewares
-// const allowedOrigins = [
-//   process.env.CLIENT_URL_1,
-//   process.env.CLIENT_URL_2,
-//   process.env.TESTING_URL,
-//   process.env.TESTING_URL2,
-// ].filter(Boolean);
-
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   credentials: true,
-//   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-//   allowedHeaders: ["Content-Type", "Authorization"],
-// };
-
 app.use(
   cors({
     origin: process.env.CLIENT_URL_1, // your frontend domain
@@ -47,8 +27,6 @@ app.use(
   })
 );
 
-// app.use(cors(corsOptions));
-// app.options("*", cors(corsOptions));
 app.use(express.json());
 app.use(helmet());
 
@@ -80,6 +58,7 @@ app.use(morgan("dev"));
 // routes
 app.use("/api/v1/article", articleRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/matches", matchRoutes);
 
 // Routes placeholder
 app.get("/", (req, res) => {
